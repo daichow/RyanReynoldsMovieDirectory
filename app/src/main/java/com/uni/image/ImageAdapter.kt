@@ -1,6 +1,7 @@
 package com.uni.image
 
 import android.app.Dialog
+import android.content.Context
 import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter(var list:ArrayList<MovieModel>): RecyclerView.Adapter<ImageAdapter.Viewholder>() {
+class ImageAdapter(private val activity: ImageActivity, var list:ArrayList<MovieModel>): RecyclerView.Adapter<ImageAdapter.Viewholder>() {
     class Viewholder(itemView: View):RecyclerView.ViewHolder(itemView){
         var textValue: TextView = itemView.findViewById(R.id.title)
         var imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -31,12 +32,10 @@ class ImageAdapter(var list:ArrayList<MovieModel>): RecyclerView.Adapter<ImageAd
         holder.imageView.setImageResource(list[position].imageId)
 
         holder.itemView.setOnClickListener {
-            val dialog = Dialog(holder.imageView.context)
-            dialog.setContentView(R.layout.movie_detail_dialog)
-            dialog.setTitle(list[position].text)
-            val image = dialog.findViewById<ImageView>(R.id.imageView2)
-            image.setImageResource(list[position].imageId)
-            dialog.show()
+            val text2 = activity.findViewById<TextView>(R.id.title2)
+            val image2 = activity.findViewById<ImageView>(R.id.imageView2)
+            image2.setImageResource(list[position].imageId)
+            text2.text = list[position].text
         }
     }
 }

@@ -10,10 +10,13 @@ class ImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var manager = GridLayoutManager(this, 2)
+
+        title = "Ryan Reynolds Movies"
+
+        val manager = GridLayoutManager(this, 2)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         recyclerView.layoutManager = manager
-        recyclerView.adapter = ImageAdapter(getMovieData())
+        recyclerView.adapter = ImageAdapter(this, getMovieData())
     }
 
     private fun getMovieData():ArrayList<MovieModel>{
